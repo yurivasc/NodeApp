@@ -5,15 +5,10 @@ const hbs = require('hbs');
 
 var app = express();
 
-//handle bars registra partial e uma funcao que podem ser usados nos templates / views
-hbs.registerPartials(__dirname + "/views/partials"); 
-hbs.registerHelper("horaAgora", () => {
-    return new Date().getFullYear();
-});
 
+hbs.registerPartials(__dirname + "/views/partials")
 app.use(express.static(__dirname + '/public'));
 
-//set port and view engine
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'hbs');
 
@@ -30,7 +25,8 @@ app.post('/', function (req, res) {
 
 //RENDER HTML WITH HANDLEBARS
 app.get('/about', (req,res) => {
-    res.render('about.hbs', {message:"hi from render"}); //passing data into the view
+    //res.render('about.hbs'}); //without passing data to the view. 
+    res.render('about.hbs', {title:"yuri", message:"hi from render"}); //passing data into the view
 });
 
 //passing parameters to the view. (kind of viewmodel.)
