@@ -28,6 +28,10 @@ app.get('/', (req,res) => {
     res.render('home.hbs');
 });
 
+app.get('/m' , (req,res) => {
+    res.render('m.hbs');
+})
+
 //POST
 app.post('/', function (req, res) {
    res.send('POST request to the homepage')
