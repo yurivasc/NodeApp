@@ -1,0 +1,17 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Yuri",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "hbs": "^4.0.0",
+    "lodash": "^4.17.11",
+    "uuid": "^3.3.2"
+  }
+}
