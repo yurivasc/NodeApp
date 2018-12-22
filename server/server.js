@@ -21,18 +21,31 @@ app.post('/newUser', (req, res) => {
         nome: req.body.nome,
         idade: req.body.idade,
         ativo: req.body.ativo,
-
     })
 
     newUsuario.save().then((doc) => {
         console.log(doc);
         res.send(doc);
-        
-    }, (e)=>{
+    }, (e) => {
         console.log(e);
         res.status(400).send(e);
     });
 });
+
+app.get('/getUser/:userId', (req, res) => {
+    console.log(req.params);
+
+    const { userId } = req.params;
+
+    User.findById(userId).then((user) => {
+        res.send(user, null, 2);
+    }).catch(e => { 
+        console.log(e); 
+        res.status(400).send(e);
+    })
+
+
+})
 
 app.listen(3000, () => {
     console.log('listening on port 3000');
