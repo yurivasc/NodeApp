@@ -8,7 +8,6 @@ const port = process.env.PORT  || 3000;
 
 var app = express();
 
-//handle bars registra partial e uma funcao que podem ser usados nos templates / views
 hbs.registerPartials(__dirname + "/views/partials"); 
 hbs.registerHelper("horaAgora", () => {
     return new Date().getFullYear();
