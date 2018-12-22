@@ -43,8 +43,12 @@ app.get('/getUser/:userId', (req, res) => {
         console.log(e); 
         res.status(400).send(e);
     })
+})
 
-
+app.delete('/delete/:userId', (req,res) => {
+    User.findOneAndRemove({_id: req.params.userId}).then((user)=>{
+        res.send("usuario deletado")
+    }).catch(e => res.status(404).send(e));
 })
 
 app.listen(3000, () => {
