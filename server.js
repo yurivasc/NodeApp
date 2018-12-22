@@ -1,6 +1,8 @@
 //require express and handlebards
 const express = require('express');
 const hbs = require('hbs');
+const routes = require('./routes/routes');
+const apis = require('./routes/apis');
 
 const port = process.env.PORT  || 3000;
 
@@ -18,36 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'hbs');
 
-
-// //GET
-// app.get('/', function (req, res) {
-//     res.send('hello world' + JSON.stringify(req.params));
-// })
-
-app.get('/', (req,res) => {
-    res.render('home.hbs');
-});
-
-app.get('/m' , (req,res) => {
-    res.render('m.hbs');
-})
-
-//POST
-app.post('/', function (req, res) {
-   res.send('POST request to the homepage')
-})
-
-//RENDER HTML WITH HANDLEBARS
-app.get('/about', (req,res) => {
-    res.render('about.hbs', {message:"hi from render"}); //passing data into the view
-});
-
-//passing parameters to the view. (kind of viewmodel.)
-
-
-app.get('/contact', (req,res) => {
-    res.render('contact', {title:"contact", message:"My message"});
-});
-
+routes.registry(app);
+apis.registry(app);
 
 app.listen(port, () => {console.log(`Server started on port ${port}`)});
