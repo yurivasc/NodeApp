@@ -1,3 +1,5 @@
+console.log('required user.js');
+
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User', {

@@ -1,3 +1,5 @@
+console.log('required book.js');
+
 var mongoose = require('mongoose');
 
 var Book = mongoose.model('usuarios', {
