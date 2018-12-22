@@ -9,10 +9,12 @@
   "author": "Yuri",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "hbs": "^4.0.0",
     "lodash": "^4.17.11",
     "mongodb": "^3.1.10",
+    "mongoose": "^5.4.0",
     "uuid": "^3.3.2"
   }
 }
