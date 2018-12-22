@@ -5,9 +5,6 @@ const registry = function (app) {
         res.send(myObject);
     })
 
-    app.get('/api/test', (req,res) => {
-        res.render('error.hbs', {message: "testing"});
-    })
 }
 
 const myObject = {

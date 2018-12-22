@@ -6,10 +6,6 @@ const registry = (app) => {
         res.render('home.hbs');
     });
 
-    app.get('/m', (req, res) => {
-        res.render('m.hbs');
-    })
-
     //POST
     app.post('/', function (req, res) {
         res.send('POST request to the homepage')
@@ -26,6 +22,11 @@ const registry = (app) => {
     app.get('/contact', (req, res) => {
         res.render('contact', { title: "contact", message: "My message" });
     });
+
+    
+    app.get('/error', (req,res) => {
+        res.render('error.hbs', {message: "testing"});
+    })
 
 }
 
