@@ -38,15 +38,29 @@ app.get('/getusers', (req,res) => {
     const user = User.find({})
     .then(users => {
         console.log(users);
+        res.header("x-teste2", "123abc");
         res.send(users);
     }).catch(e => {
         console.log(e);
     });
 });
 
-// app.get('/usemidleware', midlewareexample, (req, res) => {
-//     res.send('use midleware');
-// });
+
+var auth = (req,res, next) => {
+    console.log('auth actioned');
+    if (1==1){
+        //do something
+        next();
+    }else{
+        res.status(404).send();
+    }
+}
+
+
+app.get('/usemidleware', auth, (req, res) => {
+    res.send('use midleware');
+    User.schema.methods.generateToken();
+});
 
 app.get('/getUser/:userId', (req, res) => {
     console.log(req.params);
@@ -62,9 +76,10 @@ app.get('/getUser/:userId', (req, res) => {
 })
 
 app.get('/createuser', (req,res) =>{
-    User.create({nome: "joao",age:30, tokens:[{
+
+    User.create({nome: "joao1",age:30, tokens:[{
         access: "hi",
-        token: "mytoken"
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDU2MDE1NjR9.X_MsUGZpe5-KsQ9HarkuKHeLoDGPMYiN5WjPMwK0NCE'
     }]})
     .then(x=>{console.log(x)})
     .catch(e =>{console.log(e)});
