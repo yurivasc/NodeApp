@@ -32,6 +32,16 @@ app.post('/newUser', (req, res) => {
     });
 });
 
+app.get('/getusers', (req,res) => {
+    const user = User.find({})
+    .then(res => {
+        console.log('ok');
+    }).catch(e => {+
+        console.log(e);
+    });
+    res.send('getallusers');
+});
+
 app.get('/getUser/:userId', (req, res) => {
     console.log(req.params);
 
