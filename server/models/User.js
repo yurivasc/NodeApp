@@ -1,8 +1,6 @@
-console.log('required user.js');
-
 var mongoose = require('mongoose');
 
-var User = mongoose.model('User', {
+var schema = new mongoose.Schema({
     nome:{
         type: String,
         required: true,
@@ -15,8 +13,30 @@ var User = mongoose.model('User', {
     ativo:{
         type: Boolean,
         default: false
-    }
+    },
+    tokens:[{
+        access: {
+            type: String
+        },
+        token: {
+            type: String,
+            default: "none"
+        }
+    }]
 });
+
+
+schema.methods.customMethod = () => {
+    return 'custom method actioned';
+}
+
+schema.statics.customStaticCustomMethod = () => {
+    return 'custom method actioned';
+}
+
+
+
+var User = mongoose.model('user', schema);
 
 module.exports = {
     User
