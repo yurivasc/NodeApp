@@ -5,8 +5,15 @@ const port = process.env.PORT  || 3000;
 
 var app = express();
 
+
+var obj = {
+    name: "yuri",
+    age: 30,
+    somethingelse: {another: "thing"}
+}
+
 app.get('/', (req,res) => {
-    res.send('ok');
+    res.send(obj);
 })
 
 
