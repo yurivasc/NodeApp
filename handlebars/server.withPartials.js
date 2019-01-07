@@ -5,11 +5,9 @@ const hbs = require('hbs');
 
 var app = express();
 
-
 hbs.registerPartials(__dirname + "/views/partials")
 app.use(express.static(__dirname + '/public'));
 
-app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'hbs');
 
 

@@ -1,0 +1,3 @@
+Assuming you are testing via mocha, you have to run your tests using the mocha command instead of the node executable.
+So if you haven't already, make sure you do npm install mocha -g. Then just run mocha in your project's root directory.
+

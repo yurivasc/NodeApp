@@ -1,12 +1,10 @@
 const path = require('path')
 const express = require('express');
-const socketIO = require('socket.io');
 const http = require('http');
 const bodyParser = require('body-parser');
 const { mongoose } = require('./db/mongoose');
 const { User } = require('./models/User');
 const { Book } = require('./models/Book');
-const { midlewareexample } = require('../midlewares/midlewareexample');
 
 const publicPath = path.join(__dirname, '../public');
 
@@ -16,7 +14,7 @@ console.log(publicPath);
 app = express();
 
 var server = http.createServer(app);
-var io = socketIO(server);
+
 
 app.use(express.static(publicPath));
 
@@ -67,11 +65,6 @@ var auth = (req, res, next) => {
 }
 
 
-app.get('/usemidleware', auth, (req, res) => {
-    res.send('use midleware');
-    User.schema.methods.generateToken();
-});
-
 app.get('/getUser/:userId', (req, res) => {
     console.log(req.params);
 
@@ -112,35 +105,6 @@ app.delete('/delete/:userId', (req, res) => {
     }).catch(e => res.status(404).send(e));
 })
 
-// io.on('connection', () => {
-//     console.log('someone connected to socket io');
-// })
-
-io.on('connection', (socket) => {
-    console.log('someone connected to socket io');
-
-
-    // //simple emit
-    // socket.emit('myCustomEvent', () =>{
-    //     console.log('myCustomEvent backend.');
-    // })
-    
-    //emit with data
-    socket.emit('myCustomEvent', {data: "testing data"}, () =>{
-        console.log('myCustomEvent backend.');
-    })
-
-})
-
-io.on('disconnect', () => {
-    console.log('someone disconnected to socket io');
-})
-
-
-// app.listen(3000, () => {
-//     console.log('listening on port 3000');
-// })
-
 server.listen(3000, () => {
-    console.log('listening server with socket io on port 3000');
+    console.log('listening server on port 3000');
 })

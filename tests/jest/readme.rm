@@ -1,0 +1,4 @@
+npm install --save-dev jest
+yarn global add jest
+
+npm install --save-dev jest

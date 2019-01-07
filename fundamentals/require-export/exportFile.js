@@ -1,6 +1,4 @@
-
-
-module.exports.myFunction = () => {
+module.exports.printmessage = () => {
     console.log('my function..');
 }
 
