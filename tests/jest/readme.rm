@@ -2,3 +2,5 @@ npm install --save-dev jest
 yarn global add jest
 
 npm install --save-dev jest
+
+yarn jest sum.test.jest 
