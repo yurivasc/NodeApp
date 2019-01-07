@@ -12,7 +12,15 @@ var obj = {
     somethingelse: {another: "thing"}
 }
 
+app.get('/', (req,res) => {
+    res.send('server up an running');
+})
+
 app.get('/json', (req,res) => {
+    res.send(obj);
+})
+
+app.get('/api', (req,res) => {
     res.send(obj);
 })
 
