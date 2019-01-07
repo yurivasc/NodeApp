@@ -12,7 +12,7 @@ var obj = {
     somethingelse: {another: "thing"}
 }
 
-app.get('/', (req,res) => {
+app.get('/json', (req,res) => {
     res.send(obj);
 })
 
