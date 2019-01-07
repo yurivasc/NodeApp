@@ -8,6 +8,8 @@ fetch("https://yurifirstapp.herokuapp.com/json")
 
 
 
+
+
 // fetch('https://httpbin.org/post', {
 //         method: 'post',
 //         body:    JSON.stringify(body),
@@ -15,3 +17,10 @@ fetch("https://yurifirstapp.herokuapp.com/json")
 //     })
 //     .then(res => res.json())
 //     .then(json => console.log(json));
+
+
+//EXAMPLE FETCHING VIA CONSOLE (CHROME - CLIENT SIDE)
+
+fetch('https://yurifirstapp.herokuapp.com/json')
+  .then(res => res.json())
+  .then(resJson => console.log(JSON.stringify(resJson)));
