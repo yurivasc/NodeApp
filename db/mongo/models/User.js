@@ -61,7 +61,7 @@ schema.statics.findbyToken = (token) => {
 }
 
 
-var User = mongoose.model('user', schema);
+var User = mongoose.model('user', schema, 'user');
 
 module.exports = {
     User
