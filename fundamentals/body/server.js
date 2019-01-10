@@ -11,8 +11,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/sendformGET", (req, res) => {
-  console.log(req.body.idade); //output: undefined -  body only works with POST requests
-  res.send("see console node");
+    
+    console.log(req.query);
+    res.send("see console node");
 });
 
 app.post("/sendformPOST", (req, res) => {
