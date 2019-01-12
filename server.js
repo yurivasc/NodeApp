@@ -20,7 +20,7 @@ var obj = {
 }
 
 app.get('/', (req,res) => {
-    res.send('server up an running -');
+    res.send('JAYDEN IS ONLINE');
 })
 
 app.get('/json', (req,res) => {
