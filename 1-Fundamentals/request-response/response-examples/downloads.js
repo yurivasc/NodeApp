@@ -7,7 +7,7 @@ const publicFolder = __dirname + '/public';
 const image = publicFolder + '/myimage.png';
 
 app.get('/download1', (req, res) => {
-    res.attachment(image); //wil download the file
+    res.attachment(image); //will download the file
     res.send('ok');
 })
 
