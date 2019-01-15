@@ -1,4 +1,12 @@
+//The following statements create equivalent arrays:
+
+// var arr = new Array(element0, element1, ..., elementN);
+// var arr = Array(element0, element1, ..., elementN);
+// var arr = [element0, element1, ..., elementN];
+
+
 const numbersArray = [1,7,5, 2, 3,5,6];
+const array2 = Array(1,2,3);
 
 
 //diff MAP VS FOREACH  

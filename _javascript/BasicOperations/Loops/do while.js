@@ -1,7 +1,6 @@
 var i = 0;
 
 do {
-    i++;
-
     console.log(i);
+    i++;
 } while(i < 3);

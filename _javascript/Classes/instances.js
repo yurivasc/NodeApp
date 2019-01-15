@@ -1,4 +1,4 @@
-const {SimpleClass, SimpleClass2} = require('./SimpleClass')
+const {SimpleClass, SimpleClass2} = require('./class')
 const Homem = require('./Homem').Homem;
 const Mulher = require('./Mulher').Mulher;
 const Pessoa = require('./Pessoa').Pessoa;

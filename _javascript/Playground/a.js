@@ -1,30 +1,17 @@
-function a() {
-
-    const x = "ha";
-    console.log(x);
-
-    function ain() {
-        const x = "he"
-        console.log(x);
+a = ".....";
+switch (a) {
+    case 'acertou': {
+        console.log("..");
+        break;
     }
 
-    console.log(x); //ha
-}
-
-a();
-
-
-
-function c() {
-    var y = "ba";
-    console.log(y);
-
-    function cin() {
-        var y = "be";
-        console.log(y);
+    case 'nao': {
+        //donothing
+        break;
     }
 
-    console.log(y); //he
+    default: {
+        console.log('default');
+        break;
+    }
 }
-
-c();
