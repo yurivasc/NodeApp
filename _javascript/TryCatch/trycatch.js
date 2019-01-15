@@ -15,7 +15,6 @@ try {
 //output:
 /*
 Error
-    at Object.<anonymous> (C:\Projects\node\NodeApp\_javascript\Playground\a.js:8:9)
     at Module._compile (internal/modules/cjs/loader.js:689:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
     at Module.load (internal/modules/cjs/loader.js:599:32)
