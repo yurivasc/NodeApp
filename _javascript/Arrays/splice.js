@@ -1,11 +1,31 @@
-var arr = [1, 2, 3];
+/*
 
-var arr2 = arr.splice(); //create new array with spliced elements
+splice(start: number, deleteCount: nubmer, object: array or single item) 
 
-console.log(arr, arr2);   //output:  [ 1, 2, 3 ] []
+slice(start:number, end:number)
+
+splice vs slice:
+
+splice changes the original array whereas slice() doesn't.
 
 
-var arr3 = arr.splice(1, 2); 
+*/
 
-console.log(arr, arr3);   //output: [ 1 ] [ 2, 3 ]
+
+var  arr = [1,2,3];  slice()
+
+// var result = arr.splice(0, 1); 
+// console.log(arr, result); // output: [2,3]  and  [1]
+
+
+// var result = arr.splice(1, 1); console.log(arr, result); //output: [1, 3][2]
+
+// var result = arr.splice(1, 3); console.log('//output: remaining:', arr, 'taken:', result); //output: [1] [2,3] 
+
+// var result = arr.splice(1, 1, 'hello'); console.log('//output: remaining:', arr, 'taken:', result); //remaining: [ 1, 'hello', 3 ] taken: [ 2 ]
+
+// var result = arr.splice(1, 0, ...['a', 'b']); console.log('// output: remaining:', arr, 'taken:', result); //remaining: [1, 'a', 'b', 2, 3] taken: []
+
+var result = arr.splice(1, 0, ...['a', 'b']); console.log('// output: remaining:', arr, 'taken:', result); //remaining: [1, 'a', 'b', 2, 3] taken: []
+
 

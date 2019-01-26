@@ -1,11 +1,15 @@
-//The shift() method removes the first element from an array and returns that removed element.This method changes the length of the array.
+/*
+pop removes the last item
 
-var array1 = [1, 2, 3];
+pop x shift
 
-var firstElement = array1.shift();
+pop: removes the last
+shift: removes the first
 
-console.log(array1);
-// expected output: Array [2, 3]
+*/
 
-console.log(firstElement);
-// expected output: 1
+var a = [1, 2, 3];
+var x = a.shift();
+console.log('//output: original array:', a, 'removed item', x);
+
+//output: original array: [ 2, 3 ] removed item 1
