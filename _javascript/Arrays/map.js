@@ -1,4 +1,14 @@
 /*
+forEach       for doing a thing with or to every entry in an array;
+filter        for producing a new array containing only qualifying entries;
+map           for making a one-to-one new array by transforming an existing array;
+some          to check whether at least one element in an array fits some description;
+every         to check whether all entries in an array match a description;
+find          to look for a value in an array
+*/
+
+
+/*
 
 map(x=> (expresstion))
 [1,2,3].map(x=> x * 10); returns 10,20,30
@@ -25,3 +35,7 @@ console.log(arr);           //output: [1,2,3]
 console.log(arrdouble);     //output: [2,4,6]
 
 
+
+myarray = [1, 2, 3];
+myarray.map((element, index) => { console.log(element, index) })
+myarray.map((e, i) => { console.log(e, i) })

@@ -8,6 +8,7 @@ splice vs slice:
 
 splice changes the original array whereas slice() doesn't.
 
+https://cdn-images-1.medium.com/max/800/1*M61AUDeeywWsdfDFP4yJHg.png
 
 */
 

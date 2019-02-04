@@ -21,3 +21,6 @@ console.log(arr);               //output (1,2,3)
 console.log(arrdouble);         //output undefined
 
 
+myarray = [1, 2, 3]
+myarray.forEach((e, i) => { console.log(e, i) })
+
