@@ -1,8 +1,6 @@
 //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
-//Spread in function callsSection
-//Replace apply
-//It is common to use Function.prototype.apply in cases where you want to use the elements of an array as arguments to a function.
+//Spread in function
 
 function myFunction(x, y, z) {}
 var args = [0, 1, 2];
