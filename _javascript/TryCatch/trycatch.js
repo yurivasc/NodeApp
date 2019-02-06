@@ -7,7 +7,7 @@ try {
 //output: ..
 
 try {
-    throw new Error();
+    throw new Error("custom message");
 } catch (e) {
     console.log(e);
 }
@@ -24,6 +24,9 @@ Error
     at startup (internal/bootstrap/node.js:282:19)
     at bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)
 */
+
+
+
 
 
 try {
