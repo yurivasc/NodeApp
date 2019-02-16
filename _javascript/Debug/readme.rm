@@ -1,5 +1,0 @@
-nodemon --inspect-brk app.js
-
--- open chrome and nodejs button
-
---Debugger listening on ws://127.0.0.1:9229/3853afba-1462-4dd7-abeb-924487a553c7
