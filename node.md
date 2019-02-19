@@ -1,4 +1,10 @@
-## # Create server without express
+##  # NODE 
+
+
+
+![node2]('public/node2.png')
+
+## Create server without express
 
 ```javascript
 var http = require('http');
@@ -11,7 +17,23 @@ http.createServer(function (req, res) {
 
 
 
-## # Create server with express
+## Create server with express
+<details>
+<summary>Explanation</summary>
+
+#### Topic 1
+
+```javascript
+const a = 'oi'
+```
+
+#### Topic 2
+
+- 1
+- 2
+- 3
+
+</details>
 
 ```javascript
 var express = require("express");
@@ -28,7 +50,7 @@ app.listen(3000, () => {
 
 
 
-## # Import modules (ES6)
+## Import modules (ES6)
 
 ```javascript	
 //Before es6
@@ -43,7 +65,7 @@ import books from './books'
 
 
 
-## # Export modules
+## Export modules
 
 ```javascript
 //METHOD 1
@@ -78,7 +100,7 @@ objFn.fun2();
 
 
 
-## # Debug with Chrome
+## Debug with Chrome
 
 - go to:  chrome://inspect/#devices
 - Open dedicated DevTools for Node
@@ -88,7 +110,7 @@ objFn.fun2();
 
 
 
-## # Debug with Visual Studio Code
+## Debug with Visual Studio Code
 
 On the debug window, click on Add Configuration, you can select NodeJs: Launch for example.
 
@@ -110,7 +132,7 @@ On the debug window, click on Add Configuration, you can select NodeJs: Launch f
 
 
 
-## # Routes with Express.Router();
+## Routes with Express.Router();
 
 
 
@@ -165,7 +187,7 @@ module.exports = {getBooks, index}
 
 
 
-## # Middlewares
+## Middleware
 
 ```javascript
 const customMidleware =  (req,res,next) => {
@@ -190,7 +212,7 @@ app.use(customMidleware)
 
 
 
-## # CORS - Middleware
+## CORS - Middleware
 
 ```javascript
 app.use((req, res, next) => {
@@ -202,7 +224,7 @@ app.use((req, res, next) => {
 
 
 
-## # Static Files - Middleware Express 
+## Static Files - Middleware Express 
 
 ```javascript
 const publicPath = path.join(__dirname, "public");
@@ -215,7 +237,7 @@ app.get('/', (req,res) => {
 
 
 
-## # Body Parser - Middleware Express 
+## Body Parser - Middleware Express 
 
 explanation:
 
@@ -236,7 +258,7 @@ app.post('/bp', (req, res) => {
 
 
 
-## # Cookies Middleware
+## Cookies Middleware
 
 Explanation:
 
@@ -254,7 +276,7 @@ app.get('/', () => {
 
 
 
-## # Set Cookies
+## Set Cookies
 
 ```javascript
 app.get('/', (req, res) => {
@@ -266,7 +288,7 @@ app.get('/', (req, res) => {
 
 
 
-## # View Engines (Handle bars)
+## View Engines (Handle bars)
 
 > server.js
 
@@ -298,7 +320,7 @@ app.get("/", (req, res) => {
 
 
 
-## # PATH (Built-in library)
+## path (Built-in library)
 
 ```javascript
 const path = require('path');
@@ -317,7 +339,7 @@ path.parse('c:\projects');
 
 
 
-## # OS (Built-in library)
+## os (Built-in library)
 
 ```javascript
 const os = require('os');
@@ -328,7 +350,7 @@ console.log(os.hostname(), os.freemem, os.homedir);
 
 
 
-## # FS (Built-in library)
+## fs (Built-in library)
 
 ```javascript
 const fs = require('fs'); //https://nodejs.org/api/fs.html
@@ -356,7 +378,9 @@ fs.appendFile(file, 'ok', (err) => {});
 
 {table of more used methods}
 
-## # HTTP (Built-in library)
+
+
+## http (Built-in library)
 
 ```javascript
 const http = require('http');
@@ -366,7 +390,7 @@ http.request('http://localhost://3000')
 
 
 
-## # Events  (Built-in library)
+## events (Built-in library)
 
 explanation:
 
@@ -386,7 +410,7 @@ app.listen(3000)
 
 
 
-## # QUERYSTRING (Built-In library)
+## # querystring (Built-In library)
 
 ```javascript
 var querystring = require("querystring");
@@ -397,13 +421,14 @@ console.log(q.year); //output: 2017
 
 
 
-## #UTIL (Built-in library)
+## # util (Built-in library)
 
 ```javascript
 const util =  require('util');
-
-console.log(util.isArray())
+console.log(util.isArray([1,2,3]))
 ```
+
+
 
 
 
