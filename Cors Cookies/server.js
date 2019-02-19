@@ -1,7 +1,7 @@
 const express = require('express')
-const app = express();
-const cookieParser = require('cookie-parser')
-
+var cookieParser = require('cookie-parser')
+ 
+var app = express()
 app.use(cookieParser())
 
 app.use(function(req, res, next) {
@@ -16,6 +16,7 @@ app.use(function(req, res, next) {
 
 
 app.get('/', (req, res) => {
+ 
     console.log(req.headers);
     console.log('acionated /')
     res.cookie('cookieName', 'yuri', { maxAge: 900000, httpOnly: true });
@@ -23,8 +24,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/another', (req, res) => {
+    console.log('acionated another')
+    console.log('Cookies: ', req.cookies)
+    console.log('cookie is', req.headers.cookie);
     console.log(req.headers);
-    console.log('acionated /')
     res.send("another ok");
 })
 
