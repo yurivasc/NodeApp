@@ -2,7 +2,7 @@
 
 
 
-![node2]('public/node2.png')
+![node2](public/node2.png)
 
 ## Create server without express
 
