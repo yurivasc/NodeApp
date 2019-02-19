@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "hbs");
 
 app.get("/", (req, res) => {
-  res.render("form.hbs", {});
+  res.render("form.hbs", {name: "yuri"});
 });
 
 app.get("/sendformGET", (req, res) => {
