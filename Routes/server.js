@@ -1,10 +1,9 @@
 const express = require('express')
-
 const app = express();
 
-const bookRouter = require('./bookroutes');
+const bookRoutes = require('./bookroutes');
 
-app.use('/book', bookRouter);
+app.use('/book', bookRoutes);
 
 
 app.listen(3000);

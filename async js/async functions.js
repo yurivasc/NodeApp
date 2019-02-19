@@ -1,11 +1,11 @@
-const f = async(name) => {
+const f = async (name) => {
     return "func executed";
 }
 
 
 console.log(f)  //[AsyncFunction: f]
 
-f().then(x=> console.log(x)); //func executed
+f().then(x => console.log(x)); //func executed
 
 
 //using async/await

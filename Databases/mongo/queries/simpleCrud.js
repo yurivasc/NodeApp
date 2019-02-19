@@ -4,61 +4,65 @@
 
 
 //insertOne takes a obj as parameter
-db.FirstCollection.insertOne({ name: "Mariana", age: 27 })
+db.users.insertOne({ name: "Mariana", age: 27 })
 
 
 //insertOne with nested obj
-db.FirstCollection.insertOne({ fullname: { firstname: "yuri", lastname: "vasconcelos" } });
+db.users.insertOne({ fullname: { firstname: "yuri", lastname: "vasconcelos" } });
 
 
 //insertMany takes an array of objects as parameter
-db.FirstCollection.insertMany([{ name: "Mariana", age: 27 }, { name: "Joao", age: 30 }]);
+db.users.insertMany([{ name: "Mariana", age: 27 }, { name: "Joao", age: 30 }]);
 
 
 //select
-db.FirstCollection.find();
+db.users.find();
 
 
 //select conditional
-db.FirstCollection.find({ name: "yuri" })
+db.users.find({ name: "yuri" })
 
 
 //select using limit - same as top X // take
-db.FirstCollection.find().limit(2);
+db.users.find().limit(2);
+
+//select using distinct
+db.users.distinct("name");
+
 
 
 //query nested documents
-db.FirstCollection.find({ fullname: { firstname: "yuri", lastname: "vasconcelos" } });
+db.users.find({ fullname: { firstname: "yuri", lastname: "vasconcelos" } });
 
 
 //howeveer when passing only one property of fullname object, it does not return
-db.FirstCollection.find({ fullname: { firstname: "yuri" } });
+db.users.find({ fullname: { firstname: "yuri" } });
 
 
 //we can archieve this by using the following syntax 
-db.FirstCollection.find({ "fullname.firstname": "yuri" });
+db.users.find({ "fullname.firstname": "yuri" });
 
 
 //adding two conditions: greater than and lower than
-db.FirstCollection.find({ age: { $gt: 15, $lt: 50 } })
+db.users.find({ age: { $gt: 15, $lt: 50 } })
 
 
 //update: 
-db.FirstCollection.updateOne(
+db.users.updateOne(
     { name: "Joao" },
     { $set: { "age": 99 }, $currentDate: { lastModified: true } }
 )
 
-db.FirstCollection.find({ name: "Joao" });
+db.users.find({ name: "Joao" });
 
 
 //deletes
-db.FirstCollection.deleteOne({ name: "Jose" });
-db.FirstCollection.deleteMany({ name: "Jose" });
+db.users.deleteOne({ name: "Jose" });
+db.users.deleteMany({ name: "Jose" });
 
 
 //getting the result of an operation to a variable and print it.. 
-var x = db.FirstCollection.deleteOne({ name: "Jose" });
+var x = db.users.deleteOne({ name: "Jose" });
 print("deletado:" + x.deletedCount);
 
 
