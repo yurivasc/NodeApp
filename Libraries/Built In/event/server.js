@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const EventEmitter = require('events'); //https://nodejs.org/api/fs.html
+const EventEmitter = require('events'); //https://nodejs.org/api/events.html
 const emmiter = new EventEmitter();
 
 emmiter.on('ok', (args) => {console.log('ok was emitted', args)})

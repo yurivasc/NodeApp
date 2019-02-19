@@ -1,6 +1,6 @@
 
 const index = (req,res) => {
-  res.send('index')
+  res.send('index ok')
 }
 
 const getBooks = (req,res) => {
