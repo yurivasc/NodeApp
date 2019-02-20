@@ -139,42 +139,23 @@ module.exports = () => console.log('fn1')
 ## Export modules ES6
 
 ```javascript
-//-- 1: Name exports --
+//------ exporting ------
+const books = () =>  console.log('books');
+const other = () => console.log('other')
+const dft = () => console.log('i am defualt')
 
-export const name = 'yuri'
-export function add(x,y) => x+y
-
-// -- you can import ..
-import { name, add } from 'lib';
-console.log(name); // yuri
-console.log(add(4, 3)); // 7
-
-//-- using * 
-import * as lib from 'lib';
-console.log(lib.add(1,2)); // 3
-
-
-
-// 2: Default exports
-
-//-- myfunc.js
-export default  function() {console.log('hello')}
-
-//- importing
-import myFunc from './myfunc'
-
-
-
-// 3: mixed default and normal 
-export default const fn = () => console.log('fn')
-export const fn2 = () => console.log('fn2')
+export {books, other, dft as default};
 
 //or
-const fn = () => console.log('fn')
-const fn2 = () => console.log('fn2')
+// export {books, other};
+// export default dft; 
 
-export default fn, fn2
 
+
+//------ importing ------
+
+import dft, {books, other} from './books'
+console.log(books, other, dft);
 
 ```
 
@@ -184,8 +165,6 @@ export default fn, fn2
     <summary>References</summary>
     https://hackernoon.com/import-export-default-require-commandjs-javascript-nodejs-es6-vs-cheatsheet-different-tutorial-example-5a321738b50f
 </details>
-
-
 
 
 
@@ -220,6 +199,177 @@ On the debug window, click on Add Configuration, you can select NodeJs: Launch f
     ]
 }
 ```
+
+
+
+## Responses
+
+
+
+> simple response
+
+```javascript	
+res.send('ok') 
+```
+
+
+
+
+
+> simple response using html
+
+```javascript
+res.send(`
+	<h1>hi</h1>
+	<form method="post" action="/dosomething">
+	<input type="text" value="name"/>
+	<input type="submit" value="send"/>
+`)
+```
+
+
+
+
+
+> status
+
+```javascript
+app.get('/status', (req, res) => { 
+    res.status(404).send('nok');
+});
+```
+
+
+
+<details>
+    <summary> List of status</summary>
+
+​    
+
+| STATUS | DESCRIPTION                   |
+| :----: | :---------------------------- |
+|  200   | OK                            |
+|  201   | Created                       |
+|  202   | Accepted                      |
+|  203   | Non-Authoritative Information |
+|  204   | No content                    |
+|  205   | Reset Content                 |
+|  301   | Moved Permantently            |
+|  302   | Found                         |
+|  303   | Other                         |
+|  304   | Not modified                  |
+|  305   | Use Proxy                     |
+|  306   | Switch Proxy                  |
+|  307   | Temporary Redirect            |
+|  308   | Permanent Redirect            |
+|  400   | Bad Request                   |
+|  401   | Unauthorized                  |
+|  402   | Payment Required              |
+|  403   | Forbidden                     |
+|  404   | Not Found                     |
+|  405   | Method not allowed            |
+|  406   | Not acceptable                |
+|  407   | Proxy Authentication Required |
+|  408   | Request timeout               |
+|  409   | Conflict                      |
+|  410   | Gone                          |
+|  500   | Internal Server Error         |
+|  501   | Not implemented               |
+|  502   | Bad Gateway                   |
+|  503   | Service Unavailable           |
+|  504   | Gateway timeout               |
+|  505   | HTTP Version not supported    |
+|  507   | Insufficient Storage          |
+
+</details>
+
+
+
+
+
+> json
+
+
+
+ This method sends a response (with the correct content-type) and the parameter converted to a JSON string using [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+
+
+
+```javascript
+res.json({ name: 'yuri' });
+```
+
+
+
+
+
+> sendFile 
+
+```javascript
+app.get('/file', (req, res) => {
+    res.sendFile(image); //will open the file/anything in the brownser
+});
+```
+
+
+
+
+
+> download / attachment 
+
+<details>
+    <summary>Differences</summary>
+    - The res.attachment "Sets the HTTP response Content-Disposition header field to “attachment”."
+
+ - This essentially says, 'Hey, this file should be viewed as an attachment, not a webpage.'
+
+ - Whereas the res.download "Transfers the file at path as an “attachment”. Typically, browsers will prompt the user for download."
+    </details>
+
+  
+
+```javascript
+app.get('/download', (req, res) => {
+    res.attachment(image); //will download the file
+    res.send('ok');
+})
+
+app.get('/download2', (req,res) => {
+    res.download(image); //will download the file
+});
+
+//The key is to set the response header to a 'Content-disposition', 'attachment; filename=theDocument.txt'
+app.get('/download3', (req,res) => {
+    res.setHeader('Content-disposition', 'attachment; filename=my image.png');
+    res.setHeader('Content-type', 'text/plain');
+    res.sendFile(image);
+})
+
+```
+
+
+
+
+
+
+
+> render  (used with template engines)
+
+```javascript
+//needs to define a engine
+app.set('view engine', 'hbs')
+
+app.get('/render', (req, res) => { 
+    
+    console.log('route ok') 
+    res.render("form.hbs", {name: "yuri"});
+});
+
+```
+
+
+
+
 
 
 
@@ -430,16 +580,31 @@ app.get('/', (req,res) => {
 
 
 ```javascript
+const express = require('express')
 const bodyParser = require('body-parser')
+const app = express();
 
-//if you comment this line, will see that req.body will have nothing.
 app.use(bodyParser.urlencoded({ extended: false })); 
+//comment line above req.body will be empty
 
+app.get('/', (req,res) => {
+  res.send(`
+    <h1> BP </h1>
+    <form method="post" action="/bp">
+      <input type="text" name="user"/>
+      <input type="submit" value="send">
+    </form>
+  `)
+})
 
 app.post('/bp', (req, res) => {
   console.log('body is ', req.body)
-  res.send('ok')
+  res.send('the user is:' + req.body.user)
 });
+
+app.listen(3000, () => {
+  console.log('listening on 3000')
+})
 ```
 
 
