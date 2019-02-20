@@ -1,6 +1,6 @@
 ##  # NODE 
 
-
+<br>
 
 ![node2](public/node2.png)
 
@@ -14,7 +14,7 @@ http.createServer(function (req, res) {
     res.end(); 
 }).listen(8080);
 ```
-
+<br>
 
 
 ## Create server with express
@@ -31,6 +31,7 @@ app.listen(3000, () => {
 });
 ```
 
+<br>
 
 
 ## Global Objects
@@ -57,7 +58,7 @@ In Node this is different. The top-level scope is not the global scope; var some
 | process  | he process object is a global object and can be accessed from anywhere. It is an instance of EventEmitter. |
 | Buffer   | The Buffer class is a global type for dealing with binary data directly. |
 
-
+<br>
 
 ## Import modules
 
@@ -127,7 +128,7 @@ NODE_MODULES_PATHS(START)
 
 </details>
 
-
+<br>
 
 ## Export modules
 
@@ -149,7 +150,7 @@ module.exports = fn
 module.exports = () => console.log('fn1')
 ```
 
-
+<br>
 
 ## Export modules ES6
 
@@ -174,12 +175,14 @@ console.log(books, other, dft);
 
 ```
 
-
+<br>
 
 <details>
     <summary>References</summary>
     https://hackernoon.com/import-export-default-require-commandjs-javascript-nodejs-es6-vs-cheatsheet-different-tutorial-example-5a321738b50f
 </details>
+
+<br>
 
 ## Debug with Chrome
 
@@ -189,7 +192,7 @@ console.log(books, other, dft);
 - run the server using inspect flag:  node --inspect server.js
 - set a breakpoint.
 
-
+<br>
 
 ## Debug with Visual Studio Code
 
@@ -211,7 +214,7 @@ On the debug window, click on Add Configuration, you can select NodeJs: Launch f
 }
 ```
 
-
+<br>
 
 ## Responses
 
@@ -224,7 +227,7 @@ res.send('ok')
 ```
 
 
-
+<br>
 
 
 > simple response using html
@@ -239,7 +242,7 @@ res.send(`
 ```
 
 
-
+<br>
 
 
 > status
@@ -250,7 +253,7 @@ app.get('/status', (req, res) => {
 });
 ```
 
-
+<br>
 
 <details>
     <summary> List of status</summary>
@@ -295,7 +298,7 @@ app.get('/status', (req, res) => {
 </details>
 
 
-
+<br><br>
 
 
 > json
@@ -311,7 +314,7 @@ res.json({ name: 'yuri' });
 ```
 
 
-
+<br>
 
 
 > sendFile 
@@ -322,8 +325,7 @@ app.get('/file', (req, res) => {
 });
 ```
 
-
-
+<br>
 
 
 > download / attachment 
@@ -358,7 +360,7 @@ app.get('/download3', (req,res) => {
 
 ```
 
-
+<br>
 
 > render  (used with template engines)
 
@@ -374,7 +376,7 @@ app.get('/render', (req, res) => {
 
 ```
 
-
+<br>
 
 > Cookies
 
@@ -382,15 +384,13 @@ app.get('/render', (req, res) => {
 res.cookie('c', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 ```
 
-
-
 When using [cookie-parser](https://www.npmjs.com/package/cookie-parser) middleware, this method also supports signed cookies. Simply include the `signed` option set to `true`. Then `res.cookie()` will use the secret passed to `cookieParser(secret)` to sign the value.
 
 ```javascript
 res.cookie('name', 'yuri', { signed: true });
 ```
 
-
+<br>
 
 > Clear Cookies
 
@@ -398,6 +398,7 @@ res.cookie('name', 'yuri', { signed: true });
 res.clearCookie('name');
 ```
 
+<br>
 
 
 ## Routes with Express.Router();
@@ -417,7 +418,7 @@ app.use('/book', bookRoutes);
 app.listen(3000);
 ```
 
-
+<br>
 
 > bookroutes.js
 
@@ -437,7 +438,7 @@ router.get('/getBooks', bookController.getBooks)
 module.exports = router;
 ```
 
-
+<br>
 
 > bookController.js
 
@@ -453,7 +454,7 @@ const getBooks = (req,res) => {
 module.exports = {getBooks, index}
 ```
 
-
+<br>
 
 
 
@@ -466,6 +467,8 @@ const customMidleware =  (req,res,next) => {
 }
 ```
 
+<br>
+
 > using:
 
 ```javascript
@@ -474,6 +477,8 @@ app.get('/', customMidleware, (req,res) => {
 })
 ```
 
+<br>
+
 > using for all routes
 
 ```javascript
@@ -481,7 +486,7 @@ app.use(customMidleware)
 ```
 
 
-
+<br>
 
 
 ## CORS - Middleware
@@ -495,7 +500,7 @@ app.use((req, res, next) => {
 ```
 
 
-
+<br>
 
 
 ## CORS - Express
@@ -510,17 +515,18 @@ app.use(cors());
 
 ```
 
-It will set all headers response to: 
+<br>
+
+
+> It will set all headers response to: 
 
 ```
 Access-Control-Allow-Origin: *
 ```
 
+<br>
 
-
-
-
-#### Restricting allowed hosts
+> Restricting allowed hosts
 
 ```javascript
 app.use(cors({
@@ -528,7 +534,9 @@ app.use(cors({
 }));
 ```
 
-list of allowed origins
+<br>
+
+> list of allowed origins
 
 ```javascript
 var allowedOrigins = ['http://localhost:3000',
@@ -544,9 +552,9 @@ app.use(cors({
 }));
 ```
 
+<br>
 
-
-#### Sending custom headers
+> Sending custom headers
 
 ```javascript
 app.use(cors({
@@ -554,8 +562,7 @@ app.use(cors({
 }));
 ```
 
-
-
+<br>
 
 
 ####  HTTP Sessions Over CORS
@@ -564,9 +571,9 @@ HTTP Sessions rely on cookies, which are not sent by default over CORS.
 
 To enable HTTP cookies over CORS, we need to follow two steps:
 
+<br>
 
-
-1. Set the `credentials` options to `true`.
+> 1. Set the `credentials` options to `true`.
 
 ```
 app.use(cors({
@@ -574,7 +581,7 @@ app.use(cors({
 }));
 ```
 
-
+<br>
 
 This will make the response include an additional [Access-Control-Allow-Credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) header:
 
@@ -582,6 +589,7 @@ This will make the response include an additional [Access-Control-Allow-Credenti
 Access-Control-Allow-Credentials: true
 ```
 
+<br>
 
 
 2. When making the AJAX request, make sure to set the [withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) property to `true`.
@@ -590,7 +598,7 @@ Access-Control-Allow-Credentials: true
 axios.get('url', { withCredentials: true }) 
 ```
 
-
+<br>
 
 ## Static Files - Middleware Express 
 
@@ -603,7 +611,7 @@ app.get('/', (req,res) => {
 })
 ```
 
-
+<br>
 
 ## Body Parser - Middleware Express 
 
@@ -616,7 +624,7 @@ app.get('/', (req,res) => {
 	</data>
 </details>
 
-
+<br>
 
 ```javascript
 const express = require('express')
@@ -646,7 +654,7 @@ app.listen(3000, () => {
 })
 ```
 
-
+<br>
 
 ## Session - Middleware Express
 
@@ -654,6 +662,7 @@ app.listen(3000, () => {
 app.use(session({ secret: "cats" }));
 ```
 
+<br>
 
 <details>
 <summary>Explanation</summary>
@@ -666,6 +675,7 @@ Sessions are used to retrieve and keep data from a user, using cookies.
 
 </details>
 
+<br>
 
 ```javascript
 const express = require('express');
@@ -720,9 +730,7 @@ app.listen(3000, () => { console.log('listening on 3000') })
 ```
 
 
-
-
-
+<br>
 
 
 ## Cookies Middleware
@@ -742,6 +750,8 @@ app.get('/', () => {
 ```
 
 
+<br>
+
 
 ## Set Cookies
 
@@ -753,6 +763,8 @@ app.get('/', (req, res) => {
 
 ```
 
+
+<br>
 
 
 ## View Engines (Handle bars)
@@ -768,6 +780,8 @@ app.get("/", (req, res) => {
 });
 
 ```
+
+<br>
 
 > forms.hbs
 
@@ -785,6 +799,7 @@ app.get("/", (req, res) => {
 </html>
 ```
 
+<br>
 
 
 ## process.env
@@ -793,7 +808,9 @@ app.get("/", (req, res) => {
 console.log(process.env);
 ```
 
-​	
+
+<br>
+
 
 ## path (Built-in library)
 
@@ -813,6 +830,8 @@ path.parse('c:\projects');
 ```
 
 
+<br>
+
 
 ## os (Built-in library)
 
@@ -823,6 +842,8 @@ console.log(os.hostname(), os.freemem, os.homedir);
 
 ```
 
+
+<br>
 
 
 ## fs (Built-in library)
@@ -851,8 +872,8 @@ fs.appendFile(file, 'ok', (err) => {});
 
 ```
 
-{table of more used methods}
 
+<br>
 
 
 ## http (Built-in library)
@@ -863,6 +884,8 @@ const http = require('http');
 http.request('http://localhost://3000')
 ```
 
+
+<br>
 
 
 ## events (Built-in library)
@@ -884,6 +907,8 @@ app.listen(3000)
 ```
 
 
+<br>
+
 
 ## querystring (Built-In library)
 
@@ -895,6 +920,8 @@ console.log(q.year); //output: 2017
 ```
 
 
+<br>
+
 
 ## util (Built-in library)
 
@@ -903,6 +930,8 @@ const util =  require('util');
 console.log(util.isArray([1,2,3]))
 ```
 
+
+<br>
 
 
 ## jasonwebtoken (external library)
@@ -923,6 +952,8 @@ jwt.decode("eyJhbGciOiJIUzI1NiJ9.dGV4dG8gYSBzZXIgZW5jcmlwdGFkbw.yvo5XgXq09SNq4_W
 ```
 
 
+<br>
+
 
 ## sha256 (external library)
 
@@ -933,6 +964,8 @@ console.log(sha('hello world', true));
 
 ```
 
+
+<br>
 
 
 ## crypto-js (external library)
@@ -948,7 +981,7 @@ console.log(hash);
 ```
 
 
-
+<br>
 
 
 ##  Socket IO 
@@ -991,6 +1024,11 @@ http.listen(3000, () => {
 });
 
 ```
+
+
+<br>
+
+
 
 > socketIO.html
 
