@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var session = require('express-session');
 
 var passport = require('passport');
 var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
