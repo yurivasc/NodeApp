@@ -1,1 +1,0 @@
-//class ChildClass extends ParentClass { ... }

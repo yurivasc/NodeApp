@@ -1,1 +1,0 @@
-db.FirstCollection.distinct("name");

@@ -1,5 +1,0 @@
-
-
-###
-we can also render static text/images..
-##
