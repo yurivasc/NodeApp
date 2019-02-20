@@ -165,6 +165,7 @@ console.log(books, other, dft);
     <summary>References</summary>
     https://hackernoon.com/import-export-default-require-commandjs-javascript-nodejs-es6-vs-cheatsheet-different-tutorial-example-5a321738b50f
 </details>
+
 ## Debug with Chrome
 
 - go to:  chrome://inspect/#devices
