@@ -33,7 +33,7 @@ app.listen(3000, () => {
 
 
 
-## Global Modules
+## Global Objects
 
 - [`__dirname`](https://nodejs.org/api/modules.html#modules_dirname)
 - [`__filename`](https://nodejs.org/api/modules.html#modules_filename)
@@ -41,14 +41,29 @@ app.listen(3000, () => {
 - [`module`](https://nodejs.org/api/modules.html#modules_module)
 - [`require()`](https://nodejs.org/api/modules.html#modules_require_id)
 
+In browsers, the top-level scope is the global scope.
+That means that in browsers if you're in the global scope var something will define a global variable.
+
+In Node this is different. The top-level scope is not the global scope; var something inside a Node module will be local to that module.
 
 
-## Import modules (ES6)
+
+| Object   | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| filename | The filename of the code being executed. (absolute path)     |
+| dirname  | The name of the directory that the currently executing script resides in. (absolute path) |
+| module   | A reference to the current module. In particular module.exports is used for defining what a module exports and makes available through require(). |
+| exports  | A reference to the module.exports that is shorter to type.   |
+| process  | he process object is a global object and can be accessed from anywhere. It is an instance of EventEmitter. |
+| Buffer   | The Buffer class is a global type for dealing with binary data directly. |
+
+
+
+## Import modules
 
 ```javascript	
-//Before es6
-const fs = require('fs'); //node module
-const myModule = require('./myfolder/mymodule'); //my module
+const fs = require('fs'); 
+const myModule = require('./myfolder/mymodule');
 
 //ES6:  *file must be saved as .mjs 
 //node --experimental-modules server.mjs
