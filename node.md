@@ -165,11 +165,6 @@ console.log(books, other, dft);
     <summary>References</summary>
     https://hackernoon.com/import-export-default-require-commandjs-javascript-nodejs-es6-vs-cheatsheet-different-tutorial-example-5a321738b50f
 </details>
-
-
-
-
-
 ## Debug with Chrome
 
 - go to:  chrome://inspect/#devices
@@ -349,10 +344,6 @@ app.get('/download3', (req,res) => {
 
 
 
-
-
-
-
 > render  (used with template engines)
 
 ```javascript
@@ -369,7 +360,27 @@ app.get('/render', (req, res) => {
 
 
 
+> Cookies
 
+```javascript
+res.cookie('c', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+```
+
+
+
+When using [cookie-parser](https://www.npmjs.com/package/cookie-parser) middleware, this method also supports signed cookies. Simply include the `signed` option set to `true`. Then `res.cookie()` will use the secret passed to `cookieParser(secret)` to sign the value.
+
+```javascript
+res.cookie('name', 'yuri', { signed: true });
+```
+
+
+
+> Clear Cookies
+
+```javascript
+res.clearCookie('name');
+```
 
 
 
