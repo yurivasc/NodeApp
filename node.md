@@ -428,6 +428,8 @@ module.exports = {getBooks, index}
 
 
 
+
+
 ## Middleware
 
 ```javascript
@@ -453,6 +455,8 @@ app.use(customMidleware)
 
 
 
+
+
 ## CORS - Middleware
 
 ```javascript
@@ -462,6 +466,8 @@ app.use((req, res, next) => {
         next(); 
 });
 ```
+
+
 
 
 
@@ -485,7 +491,9 @@ Access-Control-Allow-Origin: *
 
 
 
-### Restricting allowed hosts
+
+
+#### Restricting allowed hosts
 
 ```javascript
 app.use(cors({
@@ -509,7 +517,9 @@ app.use(cors({
 }));
 ```
 
-### Sending custom headers
+
+
+#### Sending custom headers
 
 ```javascript
 app.use(cors({
@@ -519,7 +529,9 @@ app.use(cors({
 
 
 
-### HTTP Sessions Over CORS
+
+
+####  HTTP Sessions Over CORS
 
 HTTP Sessions rely on cookies, which are not sent by default over CORS.
 
