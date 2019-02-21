@@ -60,6 +60,30 @@ In Node this is different. The top-level scope is not the global scope; var some
 
 <br>
 
+
+## Module Wrapper Function
+
+every file in nodejs is wrapped by a function:
+
+at runtime our code will be converted and wrapped such as above.
+
+example:
+
+```javascript
+(function (exports, require, module, __filename, __dirname)){
+  //your code here, example:
+  const express = require('express')
+  const app = express()
+  app.listen(3000)
+});
+```
+
+
+
+<br>
+
+
+
 ## Import modules
 
 ```javascript	
@@ -213,6 +237,27 @@ On the debug window, click on Add Configuration, you can select NodeJs: Launch f
     ]
 }
 ```
+
+<br>
+
+## Debug library
+
+for example, some times we put a lot of console.log in our code
+just to check a certain information. but then, we remove to production,
+later, we need to do it again and write all console.log again.
+
+So to avoid this, we can use the debug library, which will only execute when we are in dev. Therefore, we don't need to keep commenting and uncommenting all logs. 
+
+yarn add debug
+
+```javascript
+require()
+
+
+```
+
+
+
 
 <br>
 
@@ -460,6 +505,10 @@ module.exports = {getBooks, index}
 
 ## Middleware
 
+
+https://expressjs.com/en/resources/middleware.html
+
+
 ```javascript
 const customMidleware =  (req,res,next) => {
    //do some operation..
@@ -567,6 +616,8 @@ app.use(cors({
 
 ####  HTTP Sessions Over CORS
 
+<br>
+
 HTTP Sessions rely on cookies, which are not sent by default over CORS.
 
 To enable HTTP cookies over CORS, we need to follow two steps:
@@ -575,6 +626,8 @@ To enable HTTP cookies over CORS, we need to follow two steps:
 
 > 1. Set the `credentials` options to `true`.
 
+<br>
+
 ```
 app.use(cors({
   credentials: true,
@@ -582,6 +635,9 @@ app.use(cors({
 ```
 
 <br>
+
+<details>
+<summary>Explanation</summary>
 
 This will make the response include an additional [Access-Control-Allow-Credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) header:
 
@@ -600,6 +656,10 @@ axios.get('url', { withCredentials: true })
 
 <br>
 
+
+</details>
+
+
 ## Static Files - Middleware Express 
 
 ```javascript
@@ -613,6 +673,74 @@ app.get('/', (req,res) => {
 
 <br>
 
+## express.json and express.urlencoded - Middleware Express
+
+both are used to parse form/requests data to the req.body
+form-data or x-www-form-urlenconded forms. 
+
+You can alternatively use the body-parser package (but not needed).
+
+<details><summary>Explanation</summary>
+
+https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
+
+When talking about express.json() and express.urlencoded() think specifically about POST requests (i.e. the .post request object) and PUT Requests (i.e. the .put request object)
+
+You DO NOT NEED express.json() and express.urlencoded() for GET Requests or DELETE Requests.
+
+You NEED express.json() and express.urlencoded() for POST and PUT requests, because in both these requests you are sending data (in the form of some data object) to the server and you are asking the server to accept or store that data (object), which is enclosed in the body (i.e. req.body) of that (POST or PUT) Request
+
+Express provides you with middleware to deal with the (incoming) data (object) in the body of the request.
+
+a. express.json() is a method inbuilt in express to recognize the incoming Request Object as a JSON Object. This method is called as a middleware in your application using the code: app.use(express.json());
+
+b. express.urlencoded() is a method inbuilt in express to recognize the incoming Request Object as strings or arrays. This method is called as a middleware in your application using the code: app.use(express.urlencoded());
+
+ALTERNATIVELY, I recommend using body-parser (it is an NPM package) to do the same thing. It is developed by the same peeps who built express and is designed to work with express. body-parser used to be part of express. Think of body-parser specifically for POST Requests (i.e. the .post request object) and/or PUT Requests (i.e. the .put request object).
+
+In body-parser you can do
+
+// calling body-parser to handle the Request Object from POST requests
+var bodyParser = require('body-parser');
+// parse application/json, basically parse incoming Request Object as a JSON Object 
+app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded, basically can only parse incoming Request Object if strings or arrays
+app.use(bodyParser.urlencoded({ extended: false }));
+// combines the 2 above, then you can parse incoming Request Object if object, with nested objects, or generally any type.
+app.use(bodyParser.urlencoded({ extended: true }));
+
+</details>
+
+
+
+```javascript
+  
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+
+app.get('/form', (req,res)=>{
+    res.send(`
+        <form method='post' action='/'>
+            <input type='text' name='user' />
+            <input type="submit" value='send'/>
+        </form>
+    `)
+})
+
+app.post('/', (req,res) => {
+    console.log(req.body) //{ user: '123' }
+    res.send('thanks');
+})
+
+```
+
+//we don't need to use body-parser.
+
+
+
+
+
 ## Body Parser - Middleware Express 
 
 <details> 
@@ -621,6 +749,14 @@ app.get('/', (req,res) => {
     </summary>
     <data>
     Is used to parse the chunks of data received to the req.body 
+
+    Earlier versions of Express used to have a lot of middleware bundled with it. bodyParser was one of the middlewares that came it. When Express 4.0 was released they decided to remove the bundled middleware from Express and make them separate packages instead. The syntax then changed from app.use(express.json()) to app.use(bodyParser.json()) after installing the bodyParser module.
+
+    bodyParser was added back to Express in release 4.16.0, because people wanted it bundled with Express like before. That means you don't have to use bodyParser.json() anymore if you are on the latest release. You can use express.json() instead.
+
+    The release history is for 4.16.0 is here for those who are interested, and the pull request here.
+
+
 	</data>
 </details>
 
@@ -750,19 +886,45 @@ app.get('/', () => {
 ```
 
 
+
 <br>
 
 
-## Set Cookies
+## helmet (external middleware / to protect your server)
 
 ```javascript
-app.get('/', (req, res) => {
-    res.cookie('cookiename', 'cookievalue', { maxAge: 900000, httpOnly: true });
-    res.send('ok');
-});
+const express = require('express')
+const helmet = require('helmet')
 
+const app = express()
+
+app.use(helmet())
 ```
 
+
+<br>
+
+
+## morgan (external middleware to log requests)
+
+```javascript
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const path = require('path')
+var morgan = require('morgan')
+
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+app.use(morgan('combined', { stream: accessLogStream }))
+
+
+app.get('/', (req, res) => { 
+    res.send('ok')
+});
+
+
+app.listen(3000, () => { console.log('http://localhost:3000' )})
+```
 
 <br>
 
@@ -802,11 +964,32 @@ app.get("/", (req, res) => {
 <br>
 
 
-## process.env
+## process.env.NODE_ENV or app.get('env')
 
 ```javascript
 console.log(process.env);
 ```
+
+Another way to get the environment:
+
+```javascript
+app.get('env') //outputs by default "development"
+
+console.log(process.env.NODE_ENV); //returns undefined because we didn't se this environment variable.
+
+```
+
+<br>
+
+to set a environment variable in node/windows use:
+
+set name=yuri
+
+getting
+set name
+
+getting all
+set
 
 
 <br>
@@ -955,6 +1138,111 @@ jwt.decode("eyJhbGciOiJIUzI1NiJ9.dGV4dG8gYSBzZXIgZW5jcmlwdGFkbw.yvo5XgXq09SNq4_W
 <br>
 
 
+## joi (external library to validate user input)
+
+```javascript
+const schema = {
+        name: Joi.string().min(1).required()
+    }
+   
+    const result = Joi.validate({name: "oi"}, schema)
+    .then(res =>  console.log('result', res))
+    .catch(err => console.log('error', err));
+
+    //output: { name: 'oi' } , because object {name:"oi"} matches the schema
+    
+    
+    const result2 = Joi.validate({name: 1}, schema)
+    .then(res =>  console.log('result', res))
+    .catch(err => console.log('error', err));
+    
+    //throws an error because {name: 1} doesn't match the schema
+    //output: 
+    /*
+      details:
+            [ { message: '"name" must be a string',
+                path: [Array],
+                type: 'string.base',
+                context: [Object] } ],
+            _object: { name: 1 },
+            annotate: [Function] }
+    */
+
+```
+
+<br>
+
+
+## winston (external library to log requests)
+
+```javascript
+const express = require('express');
+const app = express();
+const winston = require('winston');
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'user-service' },
+    transports: [
+        new winston.transports.File({ filename: 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'combined.log' })
+    ]
+});
+
+if (process.env.NODE_ENV !== 'production') {
+    logger.add(new winston.transports.Console({
+        format: winston.format.simple()
+    }));
+}
+
+app.get('/', (req, res) => {
+    logger.info('Hello again distributed logs');
+    logger.log("info", "test yuri")
+    logger.error('test');
+    res.send('ok')
+});
+
+
+app.listen(3000, () => { console.log('http://localhost:3000') })
+```
+
+
+
+<br>
+
+## rc (external library - for configuration)
+
+https://www.npmjs.com/package/rc
+
+so basically you can create two files:
+dev.json and prod.json and you can configure each differently.
+
+Then, you can load one or the other based on the process.env.NODE_ENV
+
+Example: configuration for development
+
+```javascript
+var configDev = require('rc')(appname, {
+  //defaults go here.
+  port: 2468,
+ 
+  //defaults which are objects will be merged, not replaced
+  views: {
+    engine: 'jade'
+  }
+});
+```
+
+```javascript
+if (process.env.NODE_ENV == "DEV"){
+  require('rc')(appname, configDev);
+}else{
+  require('rc')(appname, configProd);
+}
+```
+
+
 ## sha256 (external library)
 
 ```javascript
@@ -980,8 +1268,17 @@ console.log(hash);
 //52c8b8639cc50a0a4906de72d685f23872178d5e33396a1520c6f4179a8511ae
 ```
 
+<br>
+
+
+##  Error handling
+
+
+
 
 <br>
+
+
 
 
 ##  Socket IO 

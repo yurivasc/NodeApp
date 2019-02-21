@@ -7,11 +7,11 @@
 			"const app = express();",
 			"",
 			"app.get('/', (req, res) => { ",
-				    "res.send('ok')",
-				"});",
+		    "    res.send('ok')",
+			"});",
 			"$1",
 			"",
-			"app.listen(3000, () => { console.log('listening on 3000' )})"
+			"app.listen(3000, () => { console.log('http://localhost:3000' )})"
 		],
 		"description": "Create server Node JS"
 	},
@@ -29,5 +29,22 @@
 		"description": "Create server API JS"
 	},
 
+	"Create form node js": {
+		"scope": "javascript,typescript",
+		"prefix": "yform",
+		"body": [
+			"app.get('/form', (req,res)=>{",
+			"	res.send(`",
+			"		<form method='get' action='/'>",
+			"			<input type='text' name='user' />",
+			"			<input type='submit' value='send'/>",
+			"		</form>",
+			"	`)",
+			"})",
+		],
+		"description": "Create form API"
+	},
+
+	
 
 }

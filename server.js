@@ -1,11 +1,15 @@
-const express = require('express')
+const express = require('express');
 const app = express();
+const startupDebugger = require('debug')('app:startup')
+const anotherDebugger = require('debug')('app:another')
 
-app.get('/', (req,res) => {
-    console.log('ok');
-    res.send('ok');
-})
+if (app.get('env') == "development"){
+    startupDebugger('ok')
+}
+
+app.get('/', (req, res) => { 
+    res.send('ok')
+});
 
 
-app.listen(3000);
-
+app.listen(3000, () => { console.log('http://localhost:3000' )})
