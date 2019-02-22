@@ -1,14 +1,14 @@
+//yarn add update
+//set DEBUG=app:startup
+
 const express = require('express');
 const app = express();
-const startupDebugger = require('debug')('app:startup')
-const anotherDebugger = require('debug')('app:another')
-
-if (app.get('env') == "development"){
-    startupDebugger('ok')
-}
+const debug = require('debug')('app:startup')
 
 app.get('/', (req, res) => { 
+    debug('test');
     res.send('ok')
+    
 });
 
 
